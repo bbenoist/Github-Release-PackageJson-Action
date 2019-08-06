@@ -1,5 +1,5 @@
 # Github-Release-Action
-Publish Github releases in an action
+Publish Github releases from package.json changes in an action
 
 ## Usage
 An example workflow
@@ -10,8 +10,8 @@ workflow "Publish Release" {
 }
 
 action "create release" {
-  uses = "elgohr/Github-Release-Action@1.0"
-  args = "UpdateDependencies"
+  uses = "bbenoist/Github-Release-Action@master"
+  args = "Automated release triggered from package.json"
   secrets = ["GITHUB_TOKEN"]
 }
 ```
