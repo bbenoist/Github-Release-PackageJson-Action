@@ -11,6 +11,7 @@ else
     
     # https://github.com/github/hub/issues/2149#issuecomment-496880225
     echo "github.com:\n- user: ${USER}\n  oauth_token: ${GITHUB_TOKEN}\n  protocol: https\n" > ~/.config/hub
+    cat ~/.config/hub
     unset GITHUB_TOKEN
 
     hub release create -m "${MESSAGE}" "${jsonVersion}"
