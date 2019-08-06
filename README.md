@@ -10,7 +10,7 @@ workflow "Publish Release" {
 }
 
 action "create release" {
-  uses = "bbenoist/Github-Release-Action@master"
+  uses = "bbenoist/Github-Release-PackageJson-Action@master"
   args = "Automated release triggered from package.json"
   secrets = ["GITHUB_TOKEN"]
 }
