@@ -21,8 +21,8 @@ RUN git clone \
       --config receive.fsckobjects=false \
       --config fetch.fsckobjects=false \
       https://github.com/github/hub.git "${GOPATH}/src/github.com/github/hub" \
- && sed -i 's|install: bin/hub man-pages|install: bin/hub|g' Makefile \
  && cd "${GOPATH}/src/github.com/github/hub" \
+ && sed -i 's|install: bin/hub man-pages|install: bin/hub|g' Makefile \
  && make install prefix=/usr/local
 
 ADD entrypoint.sh /entrypoint.sh
