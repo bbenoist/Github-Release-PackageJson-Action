@@ -11,7 +11,7 @@ RUN apt-get update \
   && apt-get install software-properties-common -y --no-install-recommends \
   && add-apt-repository ppa:cpick/hub \
   && apt-get update \
-  && apt-get install build-essential jq git golang-go -y --no-install-recommends \
+  && apt-get install build-essential jq git golang-go bsdmainutils groff -y --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
 ENV GOPATH=/go
