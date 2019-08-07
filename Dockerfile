@@ -11,13 +11,13 @@ RUN apt-get update \
  && apt-get install software-properties-common -y --no-install-recommends \
       curl \
       git \
-      jq
+      jq \
  && rm -rf /var/lib/apt/lists/*
  
- ARG HUB_VERSION="2.12.3"
- ARG HUB_URL="https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-linux-amd64-${HUB_VERSION}.tgz"
- RUN curl "${HUB_URL}" | tar xzv -C / \
-  && bash "/hub-linux-amd64-${HUB_VERSION}/install"
+ARG HUB_VERSION="2.12.3"
+ARG HUB_URL="https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-linux-amd64-${HUB_VERSION}.tgz"
+RUN curl "${HUB_URL}" | tar xzv -C /
+RUN bash "/hub-linux-amd64-${HUB_VERSION}/install"
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
