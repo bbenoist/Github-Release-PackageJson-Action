@@ -16,7 +16,7 @@ RUN apt-get update \
  
 ARG HUB_VERSION="2.12.3"
 ARG HUB_URL="https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-linux-amd64-${HUB_VERSION}.tgz"
-RUN curl -L "${HUB_URL}" | tar xv -C /
+RUN curl -L "${HUB_URL}" | tar xzv -C /
 RUN bash "/hub-linux-amd64-${HUB_VERSION}/install"
 
 ADD entrypoint.sh /entrypoint.sh
