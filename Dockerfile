@@ -21,7 +21,7 @@ RUN git clone \
   --config receive.fsckobjects=false \
   --config fetch.fsckobjects=false \
   https://github.com/github/hub.git "${GOPATH}/src/github.com/github/hub"
-RUN cd "$GOPATH/src/github.com/github/hub" && make install prefix=/usr/local
+RUN cd "$GOPATH/src/github.com/github/hub" && make bin/hub && prefix=/usr/local bash ./script/install.sh
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
