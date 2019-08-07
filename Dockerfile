@@ -11,19 +11,12 @@ RUN apt-get update \
   && apt-get install software-properties-common -y --no-install-recommends \
   && add-apt-repository ppa:cpick/hub \
   && apt-get update \
-  && apt-get install build-essential jq git golang-go bsdmainutils groff -y --no-install-recommends \
+  && apt-get install build-essential jq git -y --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
-
-ENV GOPATH=/go
-RUN mkdir -p "${GOPATH}/src/github.com/github"
-RUN git clone \
-      --config transfer.fsckobjects=false \
-      --config receive.fsckobjects=false \
-      --config fetch.fsckobjects=false \
-      https://github.com/github/hub.git "${GOPATH}/src/github.com/github/hub" \
- && cd "${GOPATH}/src/github.com/github/hub" \
- && sed -i 's|install: bin/hub man-pages|install: bin/hub|g' Makefile \
- && make install prefix=/usr/local
+ 
+ ARG HUB_VERSION="2.12.3"
+ RUN curl "hub-linux-amd64-${HUB_VERSION}.tgz" | tar xzv -C / \
+  && bash "/hub-linux-amd64-${HUB_VERSION}/install"
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
