@@ -8,11 +8,11 @@ LABEL "repository"="https://github.com/bbenoist/Github-Release-PackageJson-Actio
 LABEL "maintainer"="Baptist BENOIST"
 
 RUN apt-get update \
-  && apt-get install software-properties-common -y --no-install-recommends \
-  && add-apt-repository ppa:cpick/hub \
-  && apt-get update \
-  && apt-get install jq git -y --no-install-recommends \
-  && rm -rf /var/lib/apt/lists/*
+ && apt-get install software-properties-common -y --no-install-recommends \
+      curl \
+      git \
+      jq
+ && rm -rf /var/lib/apt/lists/*
  
  ARG HUB_VERSION="2.12.3"
  ARG HUB_URL="https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-linux-amd64-${HUB_VERSION}.tgz"
