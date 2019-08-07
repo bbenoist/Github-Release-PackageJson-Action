@@ -13,7 +13,7 @@ else
     hub --version
     if [[ -f $HOME/.config/hub ]]; then cat $HOME/.config/hub ; fi
     
-    # https://github.com/github/hub/issues/2149#issuecomment-496880225
-    # export GITHUB_USER=bot
+    # https://github.com/github/hub/issues/2149#issuecomment-513214342
+    export GITHUB_USER=bot
     hub release create -m "${MESSAGE}" "${jsonVersion}"
 fi
