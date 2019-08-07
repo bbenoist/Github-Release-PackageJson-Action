@@ -11,7 +11,7 @@ RUN apt-get update \
   && apt-get install software-properties-common -y --no-install-recommends \
   && add-apt-repository ppa:cpick/hub \
   && apt-get update \
-  && apt-get install build-essential jq git -y --no-install-recommends \
+  && apt-get install jq git -y --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
  
  ARG HUB_VERSION="2.12.3"
