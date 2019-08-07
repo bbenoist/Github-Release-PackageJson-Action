@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-MESSAGE=$*
 jsonVersion=`jq -r ".version" package.json`
 
 if GIT_DIR=.git git rev-parse "${jsonVersion}" >/dev/null 2>&1 ; then
@@ -15,5 +14,5 @@ else
     
     # https://github.com/github/hub/issues/2149#issuecomment-513214342
     export GITHUB_USER=bot
-    hub release create -m "${MESSAGE}" "${jsonVersion}"
+    hub release create -m "${jsonVersion}" "${jsonVersion}"
 fi
