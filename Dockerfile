@@ -17,11 +17,13 @@ RUN apt-get update \
 ENV GOPATH=/go
 RUN mkdir -p "${GOPATH}/src/github.com/github"
 RUN git clone \
-  --config transfer.fsckobjects=false \
-  --config receive.fsckobjects=false \
-  --config fetch.fsckobjects=false \
-  https://github.com/github/hub.git "${GOPATH}/src/github.com/github/hub"
-RUN cd "$GOPATH/src/github.com/github/hub" && make bin/hub && prefix=/usr/local bash ./script/install.sh
+      --config transfer.fsckobjects=false \
+      --config receive.fsckobjects=false \
+      --config fetch.fsckobjects=false \
+      https://github.com/github/hub.git "${GOPATH}/src/github.com/github/hub" \
+ && sed -i 's|install: bin/hub man-pages|install: bin/hub|g' Makefile \
+ && cd "${GOPATH}/src/github.com/github/hub" \
+ && make install prefix=/usr/local
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
